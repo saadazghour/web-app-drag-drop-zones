@@ -1,28 +1,29 @@
 import { Box, Text } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
-import { useDrag, useDrop } from "react-dnd";
+import itemsTypes from "../utils/itemsTypes";
+import { useDrag } from "react-dnd";
 
-const TaskCard = ({ status, title, content, icon }) => {
-  // {
-  //   id, item, index, moveItem, status;
-  // }
+const TaskCard = ({ status, title, content, icon, id }) => {
+  const [{ isDragging }, drag] = useDrag({
+    // You have to have a type for the drag and drop
+    type: itemsTypes.CARD,
+    item: { type: itemsTypes.CARD, ID: id },
 
-  // const ref = useRef(null);
-
-  // const [{ isDragging }, drag] = useDrag({
-  //   // You have to have a type for the drag and drop
-  //   // item: { type: ItemType.CARD, id: id },
-
-  //   // When monitor is Dragging add prop called isDragging to true
-  //   // /* <div ref={drag}>Drag me!! </div> */
-
-  //   collect: (monitor) => ({
-  //     isDragging: !!monitor.isDragging(),
-  //   }),
-  // });
+    // When monitor is Dragging add prop called isDragging to true
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+  });
 
   return (
-    <Box bg="whiteAlpha.800" rounded="md" p={4} boxShadow="md">
+    <Box
+      ref={drag}
+      opacity={isDragging ? 0.8 : 1}
+      bg="whiteAlpha.800"
+      rounded="md"
+      p={4}
+      boxShadow="md"
+    >
       <Text fontWeight="semibold" fontSize="xl" textAlign="start">
         {status}
       </Text>

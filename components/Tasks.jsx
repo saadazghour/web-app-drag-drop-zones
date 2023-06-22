@@ -7,9 +7,14 @@ import {
   Divider,
   GridItem,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import TaskCard from "./taskCard";
 import { data, statuses } from "../pages/data/index";
+import BoxTarget from "./BoxTarget";
+
+export const CardContext = createContext({
+  isDone: (id) => {},
+});
 
 const Tasks = () => {
   const { colorMode } = useColorMode();
@@ -19,24 +24,38 @@ const Tasks = () => {
 
   const [taskList, setTasksList] = useState(data);
 
+  const isDone = (id) => {
+    const draggedTask = taskList.filter((task) => task.id === id)[0];
+    draggedTask.status = "DONE";
+
+    setTasksList((prevState) => {
+      const newItems = prevState
+        .filter((task) => task.id !== id)
+        .concat(draggedTask);
+
+      return newItems;
+    });
+  };
+
   return (
-    <Grid
-      templateColumns="repeat(2, 1fr)"
-      marginTop="20"
-      w="60vw"
-      h="80vh"
-      gap={10}
-    >
-      <Box
-        bg={inProgressBG[colorMode]}
-        rounded="md"
-        w="100%"
-        p={4}
-        boxShadow="md"
+    <CardContext.Provider value={{ isDone }}>
+      <Grid
+        templateColumns="repeat(2, 1fr)"
+        marginTop="10"
+        w="60vw"
+        h="40vh"
+        gap={10}
       >
-        <Stack spacing={3}>
-          <Box>
-            {/* {statuses.map(({ status }, idx) => (
+        <Box
+          bg={inProgressBG[colorMode]}
+          rounded="md"
+          w="100%"
+          p={4}
+          boxShadow="md"
+        >
+          <Stack spacing={3}>
+            <Box>
+              {/* {statuses.map(({ status }, idx) => (
               <Text
                 key={idx}
                 fontWeight="semibold"
@@ -47,36 +66,56 @@ const Tasks = () => {
               </Text>
             ))} */}
 
-            <Text fontWeight="semibold" fontSize="2xl" textAlign="center">
-              In Progress
-            </Text>
-          </Box>
-          <Divider />
+              <Text fontWeight="semibold" fontSize="2xl" textAlign="center">
+                In Progress
+              </Text>
+            </Box>
+            <Divider />
 
-          {/* Add Task Card Component Here  */}
-          {taskList.map(({ icon, title, status, content }, idx) => (
-            <TaskCard
-              key={idx}
-              icon={icon}
-              title={title}
-              status={status}
-              content={content}
-            />
-          ))}
-        </Stack>
-      </Box>
+            {/* Add Task Card Component Here  */}
+            {taskList
+              .filter((task) => task.status === "InProgress")
+              .map(({ icon, title, status, content, id }, idx) => (
+                <TaskCard
+                  id={id}
+                  key={idx}
+                  icon={icon}
+                  title={title}
+                  status={status}
+                  content={content}
+                />
+              ))}
+          </Stack>
+        </Box>
 
-      <Box bg={doneBG[colorMode]} rounded="md" w="100%" p={4} boxShadow="md">
-        <Stack spacing={3}>
-          <Box>
-            <Text fontWeight="semibold" fontSize="2xl" textAlign="center">
-              DONE
-            </Text>
-          </Box>
-          <Divider />
-        </Stack>
-      </Box>
-    </Grid>
+        <Box bg={doneBG[colorMode]} rounded="md" w="100%" p={4} boxShadow="md">
+          <Stack spacing={3}>
+            <Box>
+              <Text fontWeight="semibold" fontSize="2xl" textAlign="center">
+                DONE
+              </Text>
+              <Divider />
+            </Box>
+
+            <BoxTarget>
+              {/* Add Task Card Component Here  */}
+              {taskList
+                .filter((task) => task.status === "DONE")
+                .map(({ icon, title, status, content, id }, idx) => (
+                  <TaskCard
+                    id={id}
+                    key={idx}
+                    icon={icon}
+                    title={title}
+                    status={status}
+                    content={content}
+                  />
+                ))}
+            </BoxTarget>
+          </Stack>
+        </Box>
+      </Grid>
+    </CardContext.Provider>
   );
 };
 
