@@ -5,31 +5,24 @@ import itemsTypes from "../utils/itemsTypes";
 import { Box } from "@chakra-ui/react";
 import { CardContext } from "./Tasks";
 
-const BoxTarget = ({ children, status }) => {
-  const { isDone } = useContext(CardContext);
+const BoxTarget = ({ children }) => {
+  const { isDone, isInProgress } = useContext(CardContext);
 
-  const [{ isOver, canDrop }, drop] = useDrop({
+  const [{ isOver }, drop, canDrop] = useDrop({
     accept: itemsTypes.CARD,
 
     drop: (item, monitor) => isDone(item.ID),
 
+    // canDrop: (item, monitor) => {
+    //   if (isInProgress(item.ID)) {
+    //     isInProgress(item.ID);
+    //   }
+    // },
+
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
-      canDrop: !!monitor.canDrop(),
+      // canDrop: !!monitor.canDrop(),
     }),
-
-    // canDrop: (item, monitor) => {
-    //   // opacity: monitor.isDragging() ? 0.5 : 1,
-    //   // console.log("Items loggg", item);
-
-    //   const itemIndex = statuses.findIndex((el) => el.status === item.status);
-
-    //   // console.log("itemIndex", itemIndex);
-
-    //   const statusIndex = statuses.findIndex((el) => el.status === status);
-
-    //   return [itemIndex + 1, itemIndex - 1].includes(statusIndex);
-    // },
   });
 
   return (
