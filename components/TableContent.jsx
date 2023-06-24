@@ -30,9 +30,11 @@ const TableContent = ({ doneTask }) => {
     <Table {...getTableProps()}>
       <Thead>
         {headerGroups.map((headerGroup) => (
-          <Tr {...headerGroup.getHeaderGroupProps()}>
+          <Tr key={headerGroup.id} {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <Th {...column.getHeaderProps()}> {column.render("Header")} </Th>
+              <Th key={column.id} {...column.getHeaderProps()}>
+                {column.render("Header")}
+              </Th>
             ))}
           </Tr>
         ))}
@@ -41,9 +43,11 @@ const TableContent = ({ doneTask }) => {
         {rows.map((row) => {
           prepareRow(row);
           return (
-            <Tr {...row.getRowProps()}>
+            <Tr key={row.id} {...row.getRowProps()}>
               {row.cells.map((cell) => (
-                <Td {...cell.getCellProps()}>{cell.render("Cell")}</Td>
+                <Td key={cell.id} {...cell.getCellProps()}>
+                  {cell.render("Cell")}
+                </Td>
               ))}
             </Tr>
           );
