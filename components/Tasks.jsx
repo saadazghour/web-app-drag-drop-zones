@@ -6,19 +6,13 @@ import {
   useColorMode,
   Divider,
   GridItem,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Td,
-  Th,
   Button,
 } from "@chakra-ui/react";
 import React, { createContext, useMemo, useState } from "react";
 import TaskCard from "./taskCard";
 import { data, statuses } from "../pages/data/index";
-import { useTable } from "react-table";
 import BoxTarget from "./BoxTarget";
+import TableContent from "./TableContent";
 
 export const CardContext = createContext({
   isDone: (id) => {},
@@ -80,35 +74,14 @@ const Tasks = () => {
     });
   };
 
-  // Using useMemo Hooks to avoid!
-  // re-rendering the table every time.
-
-  // The useMemo hook is used for memoization in React. It allows you to memoize the result of a computation and only recompute it when its dependencies change. By using useMemo, you can optimize the performance of your application by avoiding unnecessary computations.
-
-  const columns = useMemo(
-    () => [
-      {
-        Header: "Unique Identifier",
-        accessor: "id",
-      },
-      {
-        Header: "Values",
-        accessor: "content",
-      },
-    ],
-    []
-  );
-
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data: doneTask });
-
   return (
     <CardContext.Provider value={{ isDone, isInProgress }}>
       <Grid
-        templateColumns="repeat(2,1fr)"
+        templateColumns="repeat(2, 1fr)" // Two columns for the top section
+        templateRows="repeat(2, 1fr)" // Two rows for the entire grid
         marginTop="10"
         w="60vw"
-        h="40vh"
+        h="100vh" // Adjust the height to fit the desired space
         gap={10}
       >
         <Box
@@ -117,6 +90,7 @@ const Tasks = () => {
           w="100%"
           p={4}
           boxShadow="md"
+          // gridColumn="span " // Span across both columns
         >
           <Stack spacing={3}>
             <Box>
@@ -183,38 +157,16 @@ const Tasks = () => {
         <Box
           bg={tableBG[colorMode]}
           rounded="md"
-          templateColumns="1fr"
           p={4}
           marginTop="10"
           h="40vh"
+          w="100%"
           gap={10}
           boxShadow="md"
+          overflowY="auto" // Enable vertical scrolling
+          gridColumn="span 2" // Span across both columns
         >
-          <Table {...getTableProps()}>
-            <Thead>
-              {headerGroups.map((headerGroup) => (
-                <Tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
-                    <Th {...column.getHeaderProps()}>
-                      {column.render("Header")}
-                    </Th>
-                  ))}
-                </Tr>
-              ))}
-            </Thead>
-            <Tbody {...getTableBodyProps()}>
-              {rows.map((row) => {
-                prepareRow(row);
-                return (
-                  <Tr {...row.getRowProps()}>
-                    {row.cells.map((cell) => (
-                      <Td {...cell.getCellProps()}>{cell.render("Cell")}</Td>
-                    ))}
-                  </Tr>
-                );
-              })}
-            </Tbody>
-          </Table>
+          <TableContent doneTask={doneTask} />
         </Box>
       </Grid>
 
