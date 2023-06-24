@@ -24,7 +24,7 @@ const Tasks = () => {
 
   const inProgressBG = { light: "teal.300", dark: "teal.700" };
   const doneBG = { light: "blue.300", dark: "blue.700" };
-  const tableBG = { light: "gray.300" };
+  const tableBG = { light: "blue.100" };
 
   const [taskList, setTasksList] = useState(data);
   const [doneTask, setDoneTask] = useState([]);
@@ -78,7 +78,6 @@ const Tasks = () => {
     <CardContext.Provider value={{ isDone, isInProgress }}>
       <Grid
         templateColumns="repeat(2, 1fr)" // Two columns for the top section
-        templateRows="repeat(2, 1fr)" // Two rows for the entire grid
         marginTop="10"
         w="60vw"
         h="100vh" // Adjust the height to fit the desired space
@@ -160,7 +159,6 @@ const Tasks = () => {
           p={4}
           marginTop="10"
           h="40vh"
-          w="100%"
           gap={10}
           boxShadow="md"
           overflowY="auto" // Enable vertical scrolling
