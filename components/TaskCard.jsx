@@ -34,6 +34,7 @@ const TaskCard = ({ status, title, content, icon, id }) => {
       bg="whiteAlpha.800"
       rounded="md"
       p={4}
+      mt={4}
       boxShadow="md"
       // onDrag={() => handleDrag(status)}
     >
