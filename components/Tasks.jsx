@@ -9,7 +9,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import React, { createContext, useMemo, useState } from "react";
-import TaskCard from "./taskCard";
+import TaskCard from "@/components/taskCard";
 import BoxTarget from "./BoxTarget";
 import TableContent from "./TableContent";
 import { data, statuses } from "../pages/api/data";
