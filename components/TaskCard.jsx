@@ -2,7 +2,6 @@ import { Box, Text } from "@chakra-ui/react";
 import React, { useContext, useRef, useState } from "react";
 import itemsTypes from "../utils/itemsTypes";
 import { useDrag } from "react-dnd";
-import { statuses } from "../pages/data";
 import { CardContext } from "./Tasks";
 
 const TaskCard = ({ status, title, content, icon, id }) => {

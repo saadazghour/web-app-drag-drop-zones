@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { useDrop } from "react-dnd";
-import { statuses } from "../pages/data/index";
 import itemsTypes from "../utils/itemsTypes";
 import { Box } from "@chakra-ui/react";
 import { CardContext } from "./Tasks";

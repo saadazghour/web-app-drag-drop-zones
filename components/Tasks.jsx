@@ -10,9 +10,9 @@ import {
 } from "@chakra-ui/react";
 import React, { createContext, useMemo, useState } from "react";
 import TaskCard from "./taskCard";
-import { data, statuses } from "../pages/data/index";
 import BoxTarget from "./BoxTarget";
 import TableContent from "./TableContent";
+import { data, statuses } from "../pages/api/data";
 
 export const CardContext = createContext({
   isDone: (id) => {},
