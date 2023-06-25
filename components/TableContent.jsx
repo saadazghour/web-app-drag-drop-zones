@@ -27,7 +27,7 @@ const TableContent = ({ doneTask }) => {
     useTable({ columns, data: doneTask });
 
   return (
-    <Table {...getTableProps()}>
+    <Table variant="striped" colorScheme="teal" {...getTableProps()}>
       <Thead>
         {headerGroups.map((headerGroup) => (
           <Tr key={headerGroup.id} {...headerGroup.getHeaderGroupProps()}>

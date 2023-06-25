@@ -33,21 +33,22 @@ const TaskCard = ({ status, title, content, icon, id }) => {
       opacity={isDragging ? 0.8 : 1}
       bg="whiteAlpha.800"
       rounded="md"
-      p={4}
-      mt={4}
+      textAlign="center"
+      p={2}
+      mt={2}
       boxShadow="md"
       // onDrag={() => handleDrag(status)}
     >
-      <Text fontWeight="semibold" fontSize="xl" textAlign="start">
+      <Text fontWeight="semibold" fontSize="md">
         {status}
       </Text>
-      <Text fontWeight="semibold" fontSize="xl" textAlign="start">
+      <Text fontWeight="semibold" fontSize="md">
         {title}
       </Text>
-      <Text fontWeight="semibold" fontSize="xl" textAlign="start">
+      <Text fontWeight="semibold" fontSize="md">
         {content}
       </Text>
-      <Text fontWeight="semibold" fontSize="xl" textAlign="start">
+      <Text fontWeight="semibold" fontSize="md">
         Buy 2L Milk finaly is free!!
         <span role="img" aria-label="Emoji">
           {icon}

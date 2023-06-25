@@ -70,17 +70,17 @@ const Tasks = () => {
         marginTop="10"
         w="60vw"
         h="100vh" // Adjust the height to fit the desired space
-        gap={10}
+        gap={6}
       >
         <Box
           bg={inProgressBG[colorMode]}
           rounded="md"
           w="100%"
-          p={4}
+          p={2}
           boxShadow="md"
           // gridColumn="span " // Span across both columns
         >
-          <Stack spacing={3}>
+          <Stack spacing={1}>
             <Box>
               {/* {statuses.map(({ status }, idx) => (
               <Text
@@ -115,8 +115,8 @@ const Tasks = () => {
           </Stack>
         </Box>
 
-        <Box bg={doneBG[colorMode]} rounded="md" w="100%" p={4} boxShadow="md">
-          <Stack spacing={3}>
+        <Box bg={doneBG[colorMode]} rounded="md" w="100%" p={2} boxShadow="md">
+          <Stack spacing={1}>
             <Box>
               <Text fontWeight="semibold" fontSize="2xl" textAlign="center">
                 DONE
