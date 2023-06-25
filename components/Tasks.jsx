@@ -28,7 +28,6 @@ const Tasks = () => {
 
   const [taskList, setTasksList] = useState(data);
   const [doneTask, setDoneTask] = useState([]);
-  const [draggedOk, setDraggedOk] = useState([]);
 
   const isDone = (id) => {
     const draggedTask = taskList.filter((task) => task.id === id)[0];
@@ -42,23 +41,13 @@ const Tasks = () => {
       return newItems;
     });
 
-    setDraggedOk(draggedTask);
-
     // Set automatically Saved Tasks in the Table without any interaction from Users.
 
     //  setDoneTask((prevState) => [...prevState, draggedTask]);
   };
 
   const handleAddTask = () => {
-    setDoneTask((prevState) => {
-      const isDuplicate = prevState.some((task) => task.id === draggedOk.id);
-
-      if (!isDuplicate) {
-        return [...prevState, draggedOk];
-      }
-
-      return prevState;
-    });
+    setDoneTask(() => taskList.filter((task) => task.status === "DONE"));
   };
 
   const isInProgress = (id) => {
