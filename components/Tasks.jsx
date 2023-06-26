@@ -94,7 +94,7 @@ const Tasks = () => {
             ))} */}
 
               <Text fontWeight="semibold" fontSize="2xl" textAlign="center">
-                In Progress
+                In Progress 🔆️
               </Text>
             </Box>
             <Divider />
@@ -119,7 +119,7 @@ const Tasks = () => {
           <Stack spacing={1}>
             <Box>
               <Text fontWeight="semibold" fontSize="2xl" textAlign="center">
-                DONE
+                DONE ✅
               </Text>
               <Divider />
             </Box>
