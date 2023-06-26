@@ -22,6 +22,14 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - React-dnd
 - React-table
 
+## Screenshots
+
+![Dragged && dropped App](https://raw.githubusercontent.com/saadazghour/web-app-drag-drop-zones/main/public/screenshots/screenshot1.png)
+
+![Dragged && dropped App](https://raw.githubusercontent.com/saadazghour/web-app-drag-drop-zones/main/public/screenshots/screenshot2.png)
+
+![Dragged && dropped App](https://raw.githubusercontent.com/saadazghour/web-app-drag-drop-zones/main/public/screenshots/screenshot3.png)
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
