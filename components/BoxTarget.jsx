@@ -11,6 +11,7 @@ const BoxTarget = ({ children }) => {
     accept: itemsTypes.CARD,
 
     drop: (item, monitor) => isDone(item.ID),
+    // canDrop: (item, monitor) => isInProgress(item.ID),
 
     // canDrop: (item, monitor) => {
     //   if (isInProgress(item.ID)) {

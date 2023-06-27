@@ -7,7 +7,7 @@ import { CardContext } from "./Tasks";
 const TaskCard = ({ status, title, content, icon, id }) => {
   const { isDone, isInProgress } = useContext(CardContext);
 
-  const [{ isDragging }, drag, canDrop] = useDrag({
+  const [{ isDragging }, drag] = useDrag({
     // You have to have a type for the drag and drop
     type: itemsTypes.CARD,
     item: { type: itemsTypes.CARD, ID: id },
