@@ -1,7 +1,7 @@
 import React from "react";
 
 const itemsTypes = {
-  CARD: "card",
+  CARD: "CARD",
 };
 
 export default itemsTypes;
