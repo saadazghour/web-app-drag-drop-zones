@@ -19,6 +19,7 @@ const BoxTarget = ({ children }) => {
     //   }
     // },
 
+    // Collect is used to monitor the current drag state.
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
       // canDrop: !!monitor.canDrop(),
